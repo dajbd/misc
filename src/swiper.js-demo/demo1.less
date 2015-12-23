@@ -1,0 +1,61 @@
+html,
+body,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+html,
+body,
+.en-tab {
+    height: 100%;
+    width: 100%;
+}
+
+.en-tab-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    overflow: hidden;
+}
+
+.en-tab-nav {
+    display: flex;
+    min-width: 100%;
+    position: absolute; // 这样，子元素才能撑大容器，这是为了做横向滚动
+    height: 100%;
+    li {
+        width: 0;
+        flex: 1;
+        min-width: 5.1em;
+        text-align: center;
+        height: 100%;
+        border: 1px solid #eee;
+        box-sizing: border-box;
+        transition: all 200ms;
+        a {
+            display: block;
+        }
+    }
+    li + li{
+		border-left: 0;
+    }
+    li.active{
+    	background: lightblue;
+    }
+}
+
+.en-tab-content {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

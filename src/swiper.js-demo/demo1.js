@@ -1,15 +1,14 @@
-! function(window, document, $, Hammer) {
-
+! function(window, document, $) {
 
     var tab = $('div.en-tab'),
         tabHeader = tab.children('.en-tab-header'),
         tabNavItems = tab.find('ul.en-tab-nav>li'),
-        tabContent = tab.children('.en-tab-content')
+        tabContent = tab.children('.en-tab-content');
 
 
     tabNavItems.each(function(index) {
         tabNavItems.eq(index).data('tabIndex', index)
-    })
+    });
 
     var tabHeaderSwiper = new Swiper(tabHeader, {
         // scrollbar: '.swiper-scrollbar',
@@ -41,15 +40,13 @@
     // })
 
     // Hammer 能避免 zepto tap被异常触发的问题
-    tabHeader.each(function(index) {
-        tabNavItem = new Hammer(tabHeader[index]);
-        tabNavItem.on('tap', function(e) {
-            var node = $(e.target),
-                index = node.data('tabIndex') || node.closest('li').data('tabIndex') || -1
-            index > -1 && tabContentSwiper.slideTo(index)
-        })
-    })
+    // hammer 好像不支持事件委托,所以逐个监听咯
+    // 注意，zepto是分模块引入的，不引入event模块，是没有.on等函数的，请注意模块的依赖
 
+    tabNavItems.hammer().on('tap', function () {
+        var index = $(this).data('tabIndex') || $(this).closest('li').data('tabIndex')
+        index > -1 && tabContentSwiper.slideTo(index)
+    })
 
 
     function initScroller() {
@@ -73,32 +70,9 @@
 
             setTimeout(fn, 20)
         }
-        // scrollY.each(function(index) {
-        //     // console.log(scrollY.eq(index)[0])
-        //     var swiper = new Swiper(scrollY.eq(index), {
-        //         // scrollbar: '.swiper-scrollbar',
-        //         direction: 'vertical',
-        //         slidesPerView: 'auto',
-        //         mousewheelControl: true,
-        //         freeMode: true
-        //     });
-
-        //     scrollY.eq(index).data('swiper', swiper)
-        // })
     }
 
+    initScroller();
 
 
-    // $(function() {
-    // setTimeout(function() {
-    //     initScroller()
-    // }, 1000);
-    initScroller()
-        // });
-
-    // setTimeout(function () {
-
-    // alert(scrollY.eq(0)[0].clientHeight)
-    // alert(scrollY.eq(0).find('.swiper-slide')[0].clientHeight)
-    // }, 2000)
-}(window, document, $, Hammer);
+}(window, document, $);

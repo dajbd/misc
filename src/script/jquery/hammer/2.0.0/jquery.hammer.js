@@ -4,7 +4,7 @@
     } else if (typeof exports === 'object') {
         factory(require('jquery'), require('hammerjs'));
     } else {
-        factory(jQuery, Hammer);
+        factory(window.jQuery || window.zepto || window.$, Hammer);
     }
 }(function($, Hammer) {
     function hammerify(el, options) {

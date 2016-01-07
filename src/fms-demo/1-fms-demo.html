@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>FMS Demo</title>
+</head>
+
+<body>
+	<div id="demo1"></div>
+	
+	<small id="demo2"></small>
+
+
+    <script src="script/lib/jquery-1.11.1.js"></script>
+    <script>
+    $.ajax({
+        url: '/test/',
+        type: 'get'
+    }).done(function(data) {
+        $('#demo1').html(data)
+    })
+
+
+    $.ajax({
+        url: '/user',
+        type: 'post',
+        dataType: 'json'
+    }).done(function(data) {
+    	console.log(data)
+        $('#demo2').append(JSON.stringify(data))
+    })
+
+    </script>
+</body>
+
+</html>

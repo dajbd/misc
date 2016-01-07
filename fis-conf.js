@@ -30,6 +30,10 @@ fis.config.merge({
         path: [{
             reg: /\/(map.json)/i,
             release: false
+        }, {
+            // 这个是node项目，不需要发布到fis 静态目录中
+            reg: "fms-demo/node_modules/**",
+            release: false
         }]
     }
 });

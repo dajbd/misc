@@ -10,7 +10,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "fms": "0.0.28",
+        "fms": "0.0.29",
         "nodemon": "^1.8.1"
     }
 }

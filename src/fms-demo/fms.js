@@ -1,5 +1,8 @@
 var fms = require('fms')
-fms.run()
+fms.run({
+    // 设置允许跨域访问
+    CORS: true
+})
 fms.ajax({
     url: '/test/',
     type: 'get',

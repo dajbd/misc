@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Demo</title>
+    <!-- Path to Framework7 iOS CSS theme styles-->
+    <link rel="stylesheet" href="./lib/framework7/1.4.0/css/framework7.ios.min.css">
+    <!-- Path to Framework7 iOS related color styles -->
+    <link rel="stylesheet" href="./lib/framework7/1.4.0/css/framework7.ios.colors.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="./lib/framework7/1.4.0/css/my-app.css">
+</head>
+
+<body>
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <div class="pages">
+                <div data-page="index" class="page">
+                    <div class="page-content">
+                        <div class="buttons-row">
+                            <!-- 关联到第一个tab, 默认激活 -->
+                            <a href="#tab1" class="tab-link active button">Tab 1</a>
+                            <!-- 关联到第二个tab -->
+                            <a href="#tab2" class="tab-link button">Tab 2</a>
+                            <!-- 关联到第三个tab -->
+                            <a href="#tab3" class="tab-link button">Tab 3</a>
+                        </div>
+                        <!-- 加 tabs-animated-wrap 嵌套就有动画效果 -->
+                        <!-- 加 tabs-swipeable-wrap 嵌套，tab能支持手势滑动切换 -->
+                        <div class="tabs-swipeable-wrap">
+                            <div class="tabs">
+                                <div class="tab active" id="tab1">
+                                    this is tab 1 content
+                                    <br>
+                                    <br>
+                                    <small class="to-tab3">切换到tab3</small>
+                                </div>
+                                <div class="tab" id="tab2">
+                                    this is tab 2 content
+                                </div>
+                                <div class="tab" id="tab3">
+                                    this is tab 3 content
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./lib/framework7/1.4.0/js/framework7.min.js"></script>
+    <script src="script/2-tab.js"></script>
+</body>
+
+</html>

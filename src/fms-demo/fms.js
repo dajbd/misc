@@ -1,7 +1,11 @@
 var fms = require('fms')
 fms.run({
     // 设置允许跨域访问
-    CORS: true
+    CORS: true,
+    port: 8080,
+    ajax: {
+        dataType: 'json'
+    }
 })
 fms.ajax({
     url: '/test/',

@@ -1,0 +1,18 @@
+{
+  "name": "fis3-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "start /b if not exist build md build & start /b fis3 release -f ./fis-conf.js -r ./src -wLd ./build & http-server ./build -p 8080 -s",
+    "dist": "rm -rf ./dist & set FIS_DEBUG=FALSE& fis3 release -f ./fis-conf.js -r ./src -D -ompd ./dist --lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fis-parser-less-2.x": "^0.1.4",
+    "fis3": "^3.3.15",
+    "http-server": "^0.8.5"
+  }
+}

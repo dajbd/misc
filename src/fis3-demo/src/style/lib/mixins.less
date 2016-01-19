@@ -1,0 +1,34 @@
+ /* 
+.mix-bg()
+特性：
+  1 图片倍数可以传参，默认是3倍图
+  2 支持base64把文件嵌入css 
+  3 自动获取图片尺寸 
+*/
+.mix-bg(@url, @ratio: 3, @data-uri: false, @img-width: false, @img-height: false){
+
+    & when (@img-width = false){
+      @w: image-width(@url) / @ratio;
+      @h: image-height(@url) / @ratio;
+      width: @w;
+      height: @h;
+    }
+    & when not (@img-width = false){
+      @w: @img-width / @ratio;
+      @h: @img-height / @ratio;
+      width: @w;
+      height: @h;
+    }
+    background-position: center center;
+    background-repeat: no-repeat;
+    // background-size: contain;  // 不太好，图片可能被拉伸
+    background-size: 100% 100%;
+
+    & when (@data-uri = true){
+      background-image: data-uri(@url);
+    }
+    & when (@data-uri = false){
+      background-image: url(@url);
+    }
+}
+

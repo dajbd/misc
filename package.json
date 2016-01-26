@@ -4,7 +4,7 @@
   "description": "scaffolding",
   "main": "index.js",
   "scripts": {
-    "start": "start /b if not exist build md build & start /b fis release -f ./fis-conf.js -r ./src -wd ./build & cd ./build & http-server -p 8080 -s",
+    "start": "start /b if exist build (rmdir /s/q build) else (mkdir build) & start /b fis release -f ./fis-conf.js -r ./src -wd ./build & http-server ./build -p 8080 -s -c-1",
     "dist": "rm -rf ./dist & set FIS_DEBUG=FALSE& fis release -f ./fis-conf.js -r ./src -D -ompd ./dist --lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

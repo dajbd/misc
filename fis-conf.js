@@ -31,6 +31,9 @@ fis.config.merge({
             reg: /\/(map.json)/i,
             release: false
         }, {
+            reg: 'filekv-demo/**',
+            release: false
+        }, {
             reg: 'fis3-demo/build/**',
             release: false
         }, {

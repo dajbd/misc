@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "start /b if not exist build md build & start /b fis3 release -f ./fis-conf.js -r ./src -wLd ./build & http-server ./build -p 8080 -s",
-    "dist": "rm -rf ./dist & set FIS_DEBUG=FALSE& fis3 release -f ./fis-conf.js -r ./src -D -ompd ./dist --lint",
+    "start": "start /b if exist build (rmdir /s/q build) else (mkdir build) & start /b fis3 release -f ./fis-conf.js -r ./src -wd ./build & http-server ./build -p 8080 -s",
+    "dist": "rmdir /s/q dist & set FIS_DEBUG=FALSE& fis3 release -f ./fis-conf.js -r ./src -d ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

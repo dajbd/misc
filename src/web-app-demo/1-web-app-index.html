@@ -6,36 +6,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <title>Demo</title>
     <link rel="stylesheet" href="script/swiper/3.3.1/css/swiper.min.css">
-    <style type="text/css">
-	.swiper-container {
-	    display: block;
-	    height: 300px;
-	}
-    </style>
+    <link rel="stylesheet" href="style/index.less?__inline">
 </head>
 
 <body>
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
-            <div class="swiper-slide">Slide 7</div>
-            <div class="swiper-slide">Slide 8</div>
-            <div class="swiper-slide">Slide 9</div>
-            <div class="swiper-slide">Slide 10</div>
+    <header>
+        <h1>这里有个标题</h1>
+    </header>
+    <div class="body">
+        <div class="swiper-container index-banner">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="image/daogu-1.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="image/daogu-2.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="image/daogu-3.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="image/daogu-4.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="image/daogu-5.jpg">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-pagination"></div>
     </div>
+    <footer>
+        <ul class="row-flex">
+            <li class="f-col">首页</li>
+            <li class="f-col">头条</li>
+            <li class="f-col">我的</li>
+        </ul>
+    </footer>
     <script src="script/swiper/3.3.1/js/swiper.min.js"></script>
     <script>
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
-        spaceBetween: 30,
+        // spaceBetween: 30,
+        loop: true,
+        autoHeight: true
     });
     </script>
 </body>

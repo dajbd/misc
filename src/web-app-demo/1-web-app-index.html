@@ -11,19 +11,19 @@
 
 <body>
     <header>
-        <h1>这里有个标题</h1>
+        <h1>标题</h1>
     </header>
     <div class="body">
-        <div class="swiper-container index-banner">
+        <div class="index-banner swiper-container">
             <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="image/daogu-3.jpg">
+                </div>
                 <div class="swiper-slide">
                     <img src="image/daogu-1.jpg">
                 </div>
                 <div class="swiper-slide">
                     <img src="image/daogu-2.jpg">
-                </div>
-                <div class="swiper-slide">
-                    <img src="image/daogu-3.jpg">
                 </div>
                 <div class="swiper-slide">
                     <img src="image/daogu-4.jpg">
@@ -34,23 +34,104 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
+        <div class="news-list">
+            <div class="row-flex">
+                <div class="f-col">
+                    <img src="image/daogu-3.jpg">
+                </div>
+                <div class="f-col-2-6">
+                    <h3 class="news-title">小标题小标题小标题</h3>
+                    <p class="news-content">内容内容内容内容内容内容</p>
+                    <div>
+                        <span class="time">2016-3-16</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row-flex">
+                <div class="f-col">
+                    <img src="image/daogu-1.jpg">
+                </div>
+                <div class="f-col-2-6">
+                    <h3 class="news-title">小标题小标题小标题</h3>
+                    <p class="news-content">内容内容内容内容内容内容</p>
+                    <div>
+                        <span class="time">2016-3-16</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row-flex">
+                <div class="f-col">
+                    <img src="image/daogu-2.jpg">
+                </div>
+                <div class="f-col-2-6">
+                    <h3 class="news-title">小标题小标题小标题</h3>
+                    <p class="news-content">内容内容内容内容内容内容</p>
+                    <div>
+                        <span class="time">2016-3-16</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row-flex">
+                <div class="f-col">
+                    <img src="image/daogu-4.jpg">
+                </div>
+                <div class="f-col-2-6">
+                    <h3 class="news-title">小标题小标题小标题</h3>
+                    <p class="news-content">内容内容内容内容内容内容</p>
+                    <div>
+                        <span class="time">2016-3-16</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row-flex">
+                <div class="f-col">
+                    <img src="image/daogu-5.jpg">
+                </div>
+                <div class="f-col-2-6">
+                    <h3 class="news-title">小标题小标题小标题</h3>
+                    <p class="news-content">内容内容内容内容内容内容</p>
+                    <div>
+                        <span class="time">2016-3-16</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
         <ul class="row-flex">
-            <li class="f-col">首页</li>
+            <li class="f-col active">首页</li>
             <li class="f-col">头条</li>
             <li class="f-col">我的</li>
         </ul>
     </footer>
     <script src="script/swiper/3.3.1/js/swiper.min.js"></script>
     <script>
-    var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        // spaceBetween: 30,
-        loop: true,
-        autoHeight: true
-    });
+    ! function(window, document) {
+
+        new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            // spaceBetween: 30,
+            loop: true,
+            autoplay: 2500,
+            autoHeight: true
+        })
+
+        var footerNav = document.querySelector('footer ul'),
+            footerNavItems = footerNav.querySelectorAll('li')
+        footerNav.onclick = function(e) {
+            var node = e.target
+            if (node.nodeName.toLowerCase() === 'li') {
+                [].forEach.call(footerNavItems, (function(el) {
+                    var cls = ' ' + el.className + ' '
+                    if (cls.indexOf(' active ') > -1) {
+                        el.className = cls.replace(/ active /gi, ' ')
+                    }
+                }))
+                node.className += ' active '
+            }
+        }
+    }(window, document)
     </script>
 </body>
 

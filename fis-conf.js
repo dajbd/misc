@@ -27,6 +27,7 @@ fis.config.merge({
         ext: {
             less: 'css',
         },
+        domain: '/misc',
         path: [{
             reg: /\/(map.json)/i,
             release: false

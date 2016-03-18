@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "start /b if exist build (rmdir /s/q build) else (mkdir build) & start /b fis release -f ./fis-conf.js -r ./src -wd ./build & http-server ./build -p 8080 -s -c-1",
-    "dist": "rm -rf ./dist & set FIS_DEBUG=FALSE& fis release -f ./fis-conf.js -r ./src -D -ompd ./dist --lint",
+    "dist": "rmdir /s/q dist & set FIS_DEBUG=FALSE& fis release -f ./fis-conf.js -r ./src -D -opd ./dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

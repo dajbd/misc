@@ -1,0 +1,1 @@
+!function(){{var a=new Framework7,o=Framework7.$;a.addView(".view-main",{dynamicNavbar:!0})}o("#tab2").on("show",function(){console.log("Tab 2 is visible")}),o(".to-tab3").click(function(){a.showTab("#tab3")})}();

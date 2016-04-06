@@ -1,7 +1,7 @@
 {
-  "name": "fe-fe-scaffolding-x",
+  "name": "misc",
   "version": "1.0.0",
-  "description": "scaffolding",
+  "description": "Demos, misc",
   "main": "index.js",
   "scripts": {
     "start": "start /b if exist build (rmdir /s/q build) else (mkdir build) & start /b fis release -f ./fis-conf.js -r ./src -wd ./build & http-server ./build -p 8080 -s -c-1",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dajbd/FE-scaffolding-X.git"
+    "url": "git+https://github.com/dajbd/misc.git"
   },
   "author": "Engin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dajbd/FE-scaffolding-X/issues"
+    "url": "https://github.com/dajbd/misc/issues"
   },
-  "homepage": "https://github.com/dajbd/FE-scaffolding-X#readme",
+  "homepage": "https://github.com/dajbd/misc#readme",
   "dependencies": {
     "fis": "^1.9.39",
     "fis-lint-csslint": "0.0.2",

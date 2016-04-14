@@ -90,7 +90,16 @@ new function() {
             //     left: 'center'
             // },
             tooltip: {
-                trigger: 'item'
+                trigger: 'item',
+                formatter: function(params) {
+                    // console.log(params)
+                    // params.seriesName
+                    var value = (params.value + '').split('.');
+                    var left = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,')
+                    var right = value[1] ? '.' + value[1] : '';
+                    var result = params.name + '：' + left + right + '万人'
+                    return result
+                }
             },
             // 左上角小图
             // legend: {
@@ -123,7 +132,7 @@ new function() {
             //     }
             // },
             series: [{
-                name: 'iphone',
+                name: '总人口',
                 type: 'map',
                 mapType: 'china',
                 roam: false,

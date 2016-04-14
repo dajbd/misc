@@ -1,29 +1,28 @@
 {
   "name": "misc",
   "version": "1.0.0",
-  "description": "Demos, misc",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "start /b if exist build (rmdir /s/q build) else (mkdir build) & start /b fis release -f ./fis-conf.js -r ./src -wd ./build & http-server ./build -p 8080 -s -c-1",
-    "dist": "rmdir /s/q dist & set FIS_DEBUG=FALSE& fis release -f ./fis-conf.js -r ./src -D -opd ./dist",
+    "start": "gulp dev",
+    "dist": "gulp dist",
+    "del": "gulp delDev",
+    "zip": "gulp zip",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dajbd/misc.git"
-  },
-  "author": "Engin",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dajbd/misc/issues"
-  },
-  "homepage": "https://github.com/dajbd/misc#readme",
   "dependencies": {
-    "fis": "^1.9.39",
-    "fis-lint-csslint": "0.0.2",
-    "fis-lint-jshint": "0.0.10",
-    "fis-parser-less-2.x": "^0.1.4",
-    "fis-postprocessor-cssprefixer": "0.0.3",
-    "http-server": "^0.8.5"
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^3.2.1",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-less": "^3.0.5",
+    "gulp-uglify": "^1.5.3",
+    "gulp-watch": "^4.3.5",
+    "gulp-zip": "^3.2.0",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "run-sequence": "^1.1.5"
   }
 }

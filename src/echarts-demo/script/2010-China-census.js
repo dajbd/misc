@@ -1,37 +1,40 @@
 new function() {
 
     var data = [
-        { name: '重庆', value: 28846 },
-        { name: '四川', value: 80418 },
-        { name: '江苏', value: 78660 },
-        { name: '辽宁', value: 43746 },
-        { name: '安徽', value: 59501 },
-        { name: '上海', value: 23019 },
-        { name: '山东', value: 95793 },
-        { name: '湖南', value: 65684 },
-        { name: '浙江', value: 54427 },
-        { name: '广西', value: 46027 },
-        { name: '湖北', value: 57238 },
-        { name: '北京', value: 19612 },
-        { name: '贵州', value: 34746 },
-        { name: '陕西', value: 37327 },
-        { name: '天津', value: 12938 },
-        { name: '吉林', value: 27462 },
-        { name: '河南', value: 94024 },
-        { name: '黑龙江', value: 38312 },
-        { name: '河北', value: 71854 },
-        { name: '甘肃', value: 25575 },
-        { name: '福建', value: 36894 },
-        { name: '海南', value: 8672 },
-        { name: '云南', value: 45966 },
-        { name: '江西', value: 44567 },
-        { name: '山西', value: 35712 },
-        { name: '内蒙古', value: 24706 },
-        { name: '广东', value: 104303 },
-        { name: '宁夏', value: 6301 },
-        { name: '青海', value: 5627 },
-        { name: '新疆', value: 21813 },
-        { name: '西藏', value: 3002 }
+        { name: '重庆', value: 2884 },
+        { name: '四川', value: 8041 },
+        { name: '江苏', value: 7866 },
+        { name: '辽宁', value: 4374 },
+        { name: '安徽', value: 5950 },
+        { name: '上海', value: 2301 },
+        { name: '山东', value: 9579 },
+        { name: '湖南', value: 6568 },
+        { name: '浙江', value: 5442 },
+        { name: '广西', value: 4602 },
+        { name: '湖北', value: 5723 },
+        { name: '北京', value: 1961 },
+        { name: '贵州', value: 3474 },
+        { name: '陕西', value: 3732 },
+        { name: '天津', value: 1293 },
+        { name: '吉林', value: 2746 },
+        { name: '河南', value: 9402 },
+        { name: '黑龙江', value: 3831 },
+        { name: '河北', value: 7185 },
+        { name: '甘肃', value: 2557 },
+        { name: '福建', value: 3689 },
+        { name: '海南', value: 867 },
+        { name: '云南', value: 4596 },
+        { name: '江西', value: 4456 },
+        { name: '山西', value: 3571 },
+        { name: '内蒙古', value: 2470 },
+        { name: '广东', value: 10430 },
+        { name: '宁夏', value: 630 },
+        { name: '青海', value: 562 },
+        { name: '新疆', value: 2181 },
+        { name: '西藏', value: 300 },
+        { name: '香港', value: 709 },
+        { name: '澳门', value: 55 },
+        { name: '台湾', value: 2316 }
     ]
 
     // 由data中的最大值，推算一个合适的值，作为map绘图的max值
@@ -84,20 +87,29 @@ new function() {
         }
 
         var option = {
-            // title: {
-            //     text: 'iphone销量',
-            //     subtext: '纯属虚构',
-            //     left: 'center'
-            // },
+            title: {
+                show: false,
+                text: '中国各省市区人口统计(2010)',
+                subtext: '',
+                left: 'center'
+            },
             tooltip: {
                 trigger: 'item',
                 formatter: function(params) {
-                    // console.log(params)
-                    // params.seriesName
+                    if (!params.name) return
+                        // console.log(params)
+                        // params.seriesName
+                    var unit = '万'
+                    if (params.value > 10000) {
+                        unit = '亿'
+                        params.value = params.value / 10000
+                    }
+
                     var value = (params.value + '').split('.');
-                    var left = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,')
+                    //var left = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,')
+                    var left = value[0]
                     var right = value[1] ? '.' + value[1] : '';
-                    var result = params.name + '：' + left + right + '万人'
+                    var result = params.name + '：' + left + right + unit
                     return result
                 }
             },
@@ -120,17 +132,17 @@ new function() {
                 color: ['orangered', 'yellow', 'lightskyblue']
             },
             // 右侧-保存为图片、数据视图等按钮
-            // toolbox: {
-            //     show: true,
-            //     orient: 'vertical',
-            //     left: 'right',
-            //     top: 'center',
-            //     feature: {
-            //         dataView: { readOnly: false },
-            //         restore: {},
-            //         saveAsImage: {}
-            //     }
-            // },
+            toolbox: {
+                show: false,
+                // orient: 'vertical',
+                // left: 'right',
+                // top: 'center',
+                // feature: {
+                //     dataView: { readOnly: false },
+                //     restore: {},
+                //     saveAsImage: {}
+                // }
+            },
             series: [{
                 name: '总人口',
                 type: 'map',

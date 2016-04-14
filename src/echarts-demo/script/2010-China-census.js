@@ -1,5 +1,39 @@
 new function() {
 
+    var data = {
+        '重庆': 28846,
+        '四川': 80418,
+        '江苏': 78660,
+        '辽宁': 43746,
+        '安徽': 59501,
+        '上海': 23019,
+        '山东': 95793,
+        '湖南': 65684,
+        '浙江': 54427,
+        '广西': 46027,
+        '湖北': 57238,
+        '北京': 19612,
+        '贵州': 34746,
+        '陕西': 37327,
+        '天津': 12938,
+        '吉林': 27462,
+        '河南': 94024,
+        '黑龙江': 38312,
+        '河北': 71854,
+        '甘肃': 25575,
+        '福建': 36894,
+        '海南': 8672,
+        '云南': 45966,
+        '江西': 44567,
+        '山西': 35712,
+        '内蒙': 24706,
+        '广东': 104303,
+        '宁夏': 6301,
+        '青海': 5627,
+        '新疆': 21813,
+        '西藏': 3002
+    }
+
     function getMap() {
         var xmlhttp;
         var url = 'script/echarts/3.1.6/map/json/china.json'
@@ -52,14 +86,17 @@ new function() {
             //     data: ['iphone3', 'iphone4', 'iphone5']
             // },
             // 左下角小图
-            // visualMap: {
-            //     min: 0,
-            //     max: 2500,
-            //     left: 'left',
-            //     top: 'bottom',
-            //     text: ['高', '低'], // 文本，默认为数值文本
-            //     calculable: true
-            // },
+            visualMap: {
+                show: false,
+                // 定义为连续型 viusalMap
+                type: 'continuous',
+                min: 0,
+                max: 10000000000,
+                // text:['High','Low'],
+                realtime: false,
+                calculable: true,
+                color: ['orangered', 'yellow', 'lightskyblue']
+            },
             // 右侧-保存为图片、数据视图等按钮
             // toolbox: {
             //     show: true,
@@ -73,7 +110,7 @@ new function() {
             //     }
             // },
             series: [{
-                name: 'iphone3',
+                name: 'iphone',
                 type: 'map',
                 mapType: 'china',
                 roam: false,

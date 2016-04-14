@@ -7,10 +7,11 @@
     <title>Demo</title>
     <style type="text/css">
     #canvas-stage {
-        min-height: 300px;
+    	_height: 480px;
+        min-height: 480px;
         /*vh 老浏览器不支持*/
         /*50vh 占视口的一半*/
-        min-height: 50vh;
+        /*min-height: 60vh;*/
     }
     </style>
 </head>
@@ -21,7 +22,31 @@
         <div>
             <div id="canvas-stage"></div>
         </div>
+        <p>数据来源：第六次全国人口普查-百度百科</p>
+        <br>
+
+        <p>为什么是2010年的数据，不是最新的？</p>
+        <p>中国的人口普查每十年进行一次。目前（2016年初）最新的数据，也就是2010年的。</p>
+
+		<br>
+        <p>鸣谢：</p>
+        <p>感谢 ECharts 开源图表软件 </p>
+
+		<br>
+        <p><small>作者：QQ 545559288</small></p>
+
+		<!--[if lt IE 9]>
+        <br>
+        <p><small>不用拿IE6 IE7 IE8 来吓我，跟你说，真的就是支持！</small></p>
+        <![endif]-->
     </div>
+    
+    <!--[if lt IE 9]>
+    <script src="script/es5-shim/4.5.8/es5-shim.min.js"></script>
+	<script src="script/es5-shim/4.5.8/es5-sham.min.js"></script>
+	<script src="script/json3/3.3.2/json3.min.js"></script>
+    <![endif]-->
+
     <script src="script/echarts/3.1.6/echarts.min.js"></script>
     <script src="script/2010-China-census.js"></script>
 </body>

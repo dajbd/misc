@@ -36,6 +36,7 @@ new function() {
 
     // 由data中的最大值，推算一个合适的值，作为map绘图的max值
     function generateMaxValue(data) {
+
         var array = data.map(function(item) {
             return item.value
         })

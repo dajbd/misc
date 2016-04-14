@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
-<title>Demo</title>
-<style type="text/css">
-
-</style>
-<script>
-
-</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+    #canvas-stage {
+        min-height: 300px;
+        /*vh 老浏览器不支持*/
+        /*50vh 占视口的一半*/
+        min-height: 50vh;
+    }
+    </style>
 </head>
+
 <body>
-	<div>
-		
-	</div>
-	
-	
+    <div>
+        <h1>中国各省市区人口统计(2010)</h1>
+        <div>
+            <div id="canvas-stage"></div>
+        </div>
+    </div>
+    <script src="script/echarts/3.1.6/echarts.min.js"></script>
+    <script src="script/2010-China-census.js"></script>
 </body>
+
 </html>

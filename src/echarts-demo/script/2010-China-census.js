@@ -1,37 +1,49 @@
 new function() {
 
-    var data = {
-        '重庆': 28846,
-        '四川': 80418,
-        '江苏': 78660,
-        '辽宁': 43746,
-        '安徽': 59501,
-        '上海': 23019,
-        '山东': 95793,
-        '湖南': 65684,
-        '浙江': 54427,
-        '广西': 46027,
-        '湖北': 57238,
-        '北京': 19612,
-        '贵州': 34746,
-        '陕西': 37327,
-        '天津': 12938,
-        '吉林': 27462,
-        '河南': 94024,
-        '黑龙江': 38312,
-        '河北': 71854,
-        '甘肃': 25575,
-        '福建': 36894,
-        '海南': 8672,
-        '云南': 45966,
-        '江西': 44567,
-        '山西': 35712,
-        '内蒙': 24706,
-        '广东': 104303,
-        '宁夏': 6301,
-        '青海': 5627,
-        '新疆': 21813,
-        '西藏': 3002
+    var data = [
+        { name: '重庆', value: 28846 },
+        { name: '四川', value: 80418 },
+        { name: '江苏', value: 78660 },
+        { name: '辽宁', value: 43746 },
+        { name: '安徽', value: 59501 },
+        { name: '上海', value: 23019 },
+        { name: '山东', value: 95793 },
+        { name: '湖南', value: 65684 },
+        { name: '浙江', value: 54427 },
+        { name: '广西', value: 46027 },
+        { name: '湖北', value: 57238 },
+        { name: '北京', value: 19612 },
+        { name: '贵州', value: 34746 },
+        { name: '陕西', value: 37327 },
+        { name: '天津', value: 12938 },
+        { name: '吉林', value: 27462 },
+        { name: '河南', value: 94024 },
+        { name: '黑龙江', value: 38312 },
+        { name: '河北', value: 71854 },
+        { name: '甘肃', value: 25575 },
+        { name: '福建', value: 36894 },
+        { name: '海南', value: 8672 },
+        { name: '云南', value: 45966 },
+        { name: '江西', value: 44567 },
+        { name: '山西', value: 35712 },
+        { name: '内蒙古', value: 24706 },
+        { name: '广东', value: 104303 },
+        { name: '宁夏', value: 6301 },
+        { name: '青海', value: 5627 },
+        { name: '新疆', value: 21813 },
+        { name: '西藏', value: 3002 }
+    ]
+
+    // 由data中的最大值，推算一个合适的值，作为map绘图的max值
+    function generateMaxValue(data) {
+        var array = data.map(function(item) {
+            return item.value
+        })
+
+        var max = Math.max.apply(Math, array)
+            // 本来max应该要再加工，算个合适的值，暂时不处理了，先直接用吧
+
+        return max
     }
 
     function getMap() {
@@ -91,7 +103,7 @@ new function() {
                 // 定义为连续型 viusalMap
                 type: 'continuous',
                 min: 0,
-                max: 10000000000,
+                max: generateMaxValue(data),
                 // text:['High','Low'],
                 realtime: false,
                 calculable: true,
@@ -122,42 +134,7 @@ new function() {
                         show: true
                     }
                 },
-                data: [
-                    { name: '北京', value: randomData() },
-                    { name: '天津', value: randomData() },
-                    { name: '上海', value: randomData() },
-                    { name: '重庆', value: randomData() },
-                    { name: '河北', value: randomData() },
-                    { name: '河南', value: randomData() },
-                    { name: '云南', value: randomData() },
-                    { name: '辽宁', value: randomData() },
-                    { name: '黑龙江', value: randomData() },
-                    { name: '湖南', value: randomData() },
-                    { name: '安徽', value: randomData() },
-                    { name: '山东', value: randomData() },
-                    { name: '新疆', value: randomData() },
-                    { name: '江苏', value: randomData() },
-                    { name: '浙江', value: randomData() },
-                    { name: '江西', value: randomData() },
-                    { name: '湖北', value: randomData() },
-                    { name: '广西', value: randomData() },
-                    { name: '甘肃', value: randomData() },
-                    { name: '山西', value: randomData() },
-                    { name: '内蒙古', value: randomData() },
-                    { name: '陕西', value: randomData() },
-                    { name: '吉林', value: randomData() },
-                    { name: '福建', value: randomData() },
-                    { name: '贵州', value: randomData() },
-                    { name: '广东', value: randomData() },
-                    { name: '青海', value: randomData() },
-                    { name: '西藏', value: randomData() },
-                    { name: '四川', value: randomData() },
-                    { name: '宁夏', value: randomData() },
-                    { name: '海南', value: randomData() },
-                    { name: '台湾', value: randomData() },
-                    { name: '香港', value: randomData() },
-                    { name: '澳门', value: randomData() }
-                ]
+                data: data
             }]
         };
 

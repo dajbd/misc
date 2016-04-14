@@ -169,6 +169,21 @@ new function() {
     new function main() {
         getMap()
         renderMap()
+
+        var innerWidth = window.innerWidth
+
+        // optimize for resize
+        window.onresize = function() {
+            var newWidth = window.innerWidth
+
+            if (innerWidth !== newWidth) {
+                innerWidth = newWidth
+
+                setTimeout(function() {
+                    renderMap()
+                }, 200)
+            }
+        }
     }
 
 }

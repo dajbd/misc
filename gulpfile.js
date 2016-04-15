@@ -5,6 +5,7 @@ var gulp = require('gulp')
 var connect //= require('gulp-connect')
 var watch // = require('gulp-watch')
 var imageReg = ['src/**/*.jpg', 'src/**/*.png', 'src/**/*.jpeg', 'src/**/*.svg']
+var noCompressJS = ['src/**/*.min.js']
 
 
 gulp.task('httpServer', function() {
@@ -14,6 +15,15 @@ gulp.task('httpServer', function() {
         livereload: isLivereload,
         // dev-build 为了让server 访问到css
         root: ['src', 'dev-build']
+    })
+})
+
+
+gulp.task('httpServerDist', function() {
+    connect = require('gulp-connect')
+
+    connect.server({
+        root: ['dist']
     })
 })
 
@@ -74,8 +84,14 @@ gulp.task('delDist', delTask(['dist']))
 
 gulp.task('compress', function() {
     var uglify = require('gulp-uglify')
+        // 有些js已经压缩了，不要再压缩
+        // 有些文件太大，压缩几乎完全卡住，不能完成，忽略他  // 如 echarts.min.js
+    var ignoreList = noCompressJS.map(function(el) {
+        return '!' + el
+    })
+    var src = ['src/**/*.js'].concat(ignoreList)
 
-    return gulp.src('src/**/*.js')
+    return gulp.src(src)
         .pipe(uglify())
         .pipe(gulp.dest('dist'))
 })
@@ -110,6 +126,13 @@ gulp.task('copy', function() {
 })
 
 
+gulp.task('copyExtraFiles', function() {
+    var src = [].concat(noCompressJS)
+    return gulp.src(src)
+        .pipe(gulp.dest('dist'))
+})
+
+
 gulp.task('dev', function(callback) {
     var runSequence = require('run-sequence')
 
@@ -133,7 +156,7 @@ gulp.task('dist', function(callback) {
     // runSequence 字符串参数的任务，顺序执行，
     // 数组参数的任务，会并行执行
     // callback 是要有的，不然 runSequence 不知道什么时候结束
-    runSequence('delDist', 'copy', ['compress', 'lessDist', 'imageMinDist'], callback)
+    runSequence('delDist', 'copy', 'copyExtraFiles', ['compress', 'lessDist', 'imageMinDist'], callback)
 })
 
 

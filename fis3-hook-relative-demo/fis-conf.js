@@ -1,1 +1,0 @@
-fis.match("*.less",{parser:fis.plugin("less-2.x"),rExt:".css"}),fis.hook("relative"),fis.match("**",{relative:!0});

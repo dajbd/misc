@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>中国各省市区人口统计(2010)</title>
+    <style type="text/css">
+    html,
+    body {
+        margin-top: 2px;
+    }
+    
+    h1 {
+        margin: 10px 0;
+        font-size: 22px;
+    }
+    
+    #canvas-stage {
+        _height: 480px;
+        min-height: 480px;
+        /*vh 老浏览器不支持*/
+        /*50vh 占视口高度的一半*/
+        /*min-height: 60vh;*/
+    }
+    /* media min-height 设置最小高度，是为了避免横屏，图标按vh计算，高度就压扁的问题*/
+    
+    @media(min-height: 300px) and (max-width: 500px) {
+        #canvas-stage {
+            min-height: 55vh;
+        }
+    }
+    
+    @media(min-height: 600px) and (min-width: 800px) {
+        #canvas-stage {
+            min-height: 80vh;
+        }
+    }
+    
+    @media(max-width: 400px) {
+        .canvas-wrap {
+            margin: 0px -20px 0px -20px;
+        }
+    }
+    
+    @media(max-width: 360px) {
+        .canvas-wrap {
+            margin: 0px -40px 0px -40px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>中国各省市区人口统计(2010)</h1>
+        <div class="canvas-wrap">
+            <div id="canvas-stage"></div>
+        </div>
+        <p>人口过亿的省份有广东省；山东与河南过9千万，依次列第2位和第3位。</p>
+        <p>数据来源：</p>
+        <ol>
+            <li>第六次全国人口普查 - 百度百科</li>
+            <li>中国第六次全国人口普查 - 维基百科</li>
+        </ol>
+        <br>
+        <p>为什么是2010年的数据，不是最新的？</p>
+        <p>中国的人口普查每十年进行一次。目前（2016年初）最新的数据，也就是2010年的。</p>
+        <br>
+        <p><small>作者：QQ 545559288</small></p>
+        <br>
+        <p>鸣谢：</p>
+        <p>感谢 ECharts 开源图表软件 </p>
+        <!--[if lt IE 9]>
+        <br>
+        <p><small>不用拿IE6 IE7 IE8 来吓我，跟你说，真的就是支持→_→</small></p>
+        <![endif]-->
+    </div>
+    <!--[if lt IE 9]>
+    <script src="script/es5-shim/4.5.8/es5-shim.min.js"></script>
+    <script src="script/es5-shim/4.5.8/es5-sham.min.js"></script>
+    <script src="script/json3/3.3.2/json3.min.js"></script>
+    <![endif]-->
+    <script src="script/echarts/3.1.6/echarts.min.js"></script>
+    <script src="script/2010-China-census.js"></script>
+</body>
+
+</html>

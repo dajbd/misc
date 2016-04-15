@@ -1,5 +1,6 @@
 new function() {
 
+    var chart
     var data = [
         { name: '重庆', value: 2884 },
         { name: '四川', value: 8041 },
@@ -75,11 +76,10 @@ new function() {
 
 
     function renderMap() {
-
         // echarts.registerMap('china', chinaJson);
 
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('canvas-stage'));
+        chart = echarts.init(document.getElementById('canvas-stage'));
 
         // 指定图表的配置项和数据
         function randomData() {
@@ -95,6 +95,7 @@ new function() {
             },
             tooltip: {
                 trigger: 'item',
+                position: 'inside',
                 formatter: function(params) {
                     if (!params.name) return
                         // console.log(params)
@@ -161,7 +162,24 @@ new function() {
         };
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        chart.setOption(option)
+
+        // echarts 2 showTip
+        // chart.component.tooltip.showTip({ seriesIndex: 0, name:'北京' }) 
+    }
+
+
+    function showTooltipOnLoaded() {
+        // 显示一个小提示
+        chart.dispatchAction({
+            type: 'showTip',
+            // 系列的 index，在 tooltip 的 trigger 为 axis 的时候可选。
+            seriesIndex: 0,
+            // 数据的 index，如果不指定也可以通过 name 属性根据名称指定数据
+            // dataIndex ? : number,
+            // 数据名称，可选，在有 dataIndex 的时候忽略
+            name: '广东'
+        })
     }
 
 
@@ -169,6 +187,7 @@ new function() {
     new function main() {
         getMap()
         renderMap()
+        showTooltipOnLoaded()
 
         var innerWidth = window.innerWidth
 

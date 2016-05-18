@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>CSS 实现SPA(单页程序)多个页面的切换效果 Demo</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    html,
+    body,
+    .page {
+        min-height: 100%;
+        min-height: 100vh;
+    }
+    
+    .page {
+        display: none;
+        background-color: #f1f1f1;
+        color: #fff;
+        padding: 0px 10px;
+    }
+    
+    .page-index {
+        display: block;
+        color: #000;
+    }
+    
+    #page-home:target,
+    #page-about:target,
+    #page-misc:target {
+        display: block;
+    }
+    
+    #page-home:target ~ .page,
+    #page-about:target ~ .page,
+    #page-misc:target ~ .page {
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="page" id="page-home" style="background-color: lightblue;">
+        <h1>Page home</h1>
+    </div>
+    <div class="page" id="page-about" style="background-color: pink;">
+        <h1>Page About</h1>
+    </div>
+    <div class="page" id="page-misc" style="background-color: Moccasin;">
+        <h1>Page misc</h1>
+    </div>
+    <div class="page page-index">
+        <h1>CSS 实现SPA(单页程序)多个页面的切换效果 Demo</h1>
+        <p>
+            <a href="#page-home">Home</a>
+        </p>
+        <p>
+            <a href="#page-about">About</a>
+        </p>
+        <p>
+            <a href="#page-misc">Misc</a>
+        </p>
+    </div>
+</body>
+
+</html>

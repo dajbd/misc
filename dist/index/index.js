@@ -1,0 +1,1 @@
+!function(){var e=document.getElementById("demo1");e.className+=" animated infinite rotate "}();

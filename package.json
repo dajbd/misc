@@ -8,6 +8,7 @@
     "dist": "gulp dist",
     "del": "gulp delDev",
     "zip": "gulp zip",
+    "hs4dist": "gulp httpServerDist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Paste Image In Textarea Editor</title>
+    <style type="text/css">
+    textarea,
+    .textarea {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 300px;
+        border: 1px solid #ccc;
+        overflow: scroll;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- <textarea id="txt-1" autofocus></textarea> -->
+        <div class="textarea" contenteditable id="txt-1"></div>
+        <!-- 实测，兼容 Chrome 49 / Firefox 46.0.1 -->
+        <!-- 好像 textarea 中不能放img标签的，就换成了div实现 -->
+    </div>
+    <script>
+    new function() {
+        var log = function(data) {
+            typeof data === 'object' && (data = JSON.stirngif(data))
+            if (window.console) {
+                console.log(data)
+            } else {
+                alert(data)
+            }
+        }
+
+        var txt = document.getElementById('txt-1')
+        txt.onpaste = function(e) {
+            // console.log(e)
+            if (!e.clipboardData) {
+                log('your browser can\'t support paste image in web page.')
+            }
+
+            var data = e.clipboardData
+
+            if (data.types.indexOf('Files') > -1) {
+                [].forEach.call(data.items, function(item) {
+                    // console.log(item)
+                    item.type.indexOf('image')
+
+
+                    // var FR = new FileReader();
+                    // var url = FR.readAsDataURL(item.getAsFile())
+
+                    var img = document.createElement('img')
+                        // img.src = 'data:image/gif;'+ url
+                        // img.src = 'data:' + item.type + ';' + url
+                        // img.src = 'data:' + item.type + ';'+window.URL.createObjectURL(item.getAsFile())
+                    img.src = window.URL.createObjectURL(item.getAsFile())
+
+                    var target = e.target
+                    var specialTag = ['br']
+                    if (specialTag.indexOf(target.tagName.toLowerCase()) > -1) {
+                        target.parentNode.insertBefore(img, target.nextSibling);
+                    } else {
+
+                        target.appendChild(img);
+                    }
+
+                    // console.log(item.getAsString())
+                    // item.getAsString(function (s) {
+                    //     console.log(s)
+                    //     ev.target.appendChild(s); 
+                    // })
+                })
+
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

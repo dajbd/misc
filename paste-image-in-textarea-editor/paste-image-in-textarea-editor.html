@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Paste Image In Web Editor</title>
+    <style type="text/css">
+    textarea,
+    .textarea {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 300px;
+        border: 1px solid #ccc;
+        /*overflow: scroll;*/
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="textarea" contenteditable id="txt-1">试试吧，QQ截图，然后 ctrl + v 就能把图片粘贴进来~ 网页上能这样贴图，体验是不是很赞？
+            <br> 注：其他的富文本暂时没有实现。
+        </div>
+        <!-- 实测，兼容 Chrome 49 / Firefox 46.0.1 -->
+        <!-- <textarea id="txt-1" autofocus></textarea> -->
+        <!-- 好像 textarea 中不能放img标签的，就换成了div实现 -->
+    </div>
+    <script>
+    new function() {
+
+        var mod = {
+            init: function() {
+                var txt = document.getElementById('txt-1')
+                txt.onpaste = mod.paste
+
+                setTimeout(function() {
+                    txt.focus()
+                    mod.setEndOfContenteditable(txt)
+                }, 1)
+            },
+            log: function(data) {
+                typeof data === 'object' && (data = JSON.stirngif(data))
+                if (window.console) {
+                    console.log(data)
+                } else {
+                    alert(data)
+                }
+            },
+            paste: function(e) {
+                // console.log(e)
+                var data = e.clipboardData
+                if (!data) {
+                    mod.log('your browser can\'t support paste image in web page.')
+                    return
+                }
+
+                if (data.types.indexOf('Files') > -1) {
+                    [].forEach.call(data.items, function(item) {
+                        // console.log(item)
+                        if (item.type.indexOf('image') === -1) return
+
+                        var img = document.createElement('img')
+                        var target = e.target
+
+                        // txt.blur()
+
+                        // 方式1
+                        var reader = new FileReader()
+                        reader.addEventListener("load", function() {
+                            img.src = this.result // 这种方式，url会是 data:image/png;base64,xxxx
+                                // mod.insertImg(target, img)
+                            mod.insertTextAtCursor(img)
+
+                            // setTimeout(function () {
+                            //     txt.focus()
+                            // }, 1000)
+                        }, false);
+                        reader.readAsDataURL(item.getAsFile())
+
+
+                        // 方式2
+                        // img.src = window.URL.createObjectURL(item.getAsFile()) // 这种方式，url会是blob://
+                        //     // 这种方式的url，好像没有全量的图片数据，生成的url有些奇怪，不太推荐
+                        //     // 方式1，在url中，就有全量的图片的base64全量数据，推荐使用方式1
+                        // mod.insertImg(target, img)
+
+                    })
+
+                }
+            },
+
+            insertImg: function(target, img) {
+                // 有时候出这样的问题，img插入到br标签中，而且img不会显示
+                var specialTag = ['br', 'img'] // 特殊处理的标签
+                if (specialTag.indexOf(target.tagName.toLowerCase()) > -1) {
+                    // target.parentNode.insertBefore(img, target.nextSibling)
+                    target.parentNode.insertBefore(img, target.previousSibling)
+                } else {
+                    target.appendChild(img)
+                }
+
+
+                // if (target.contenteditable) {
+                //     // 如果target是编辑器本身，特殊处理
+                //     target.appendChild(img)
+                // } else {
+
+                //     target.parentNode.insertBefore(img, target.previousSibling)
+                // }
+            },
+            // http://stackoverflow.com/questions/2920150/insert-text-at-cursor-in-a-content-editable-div
+            // el , string or element
+            insertTextAtCursor: function(el) {
+                var sel, range
+                if (window.getSelection) {
+                    sel = window.getSelection();
+                    if (sel.getRangeAt && sel.rangeCount) {
+                        range = sel.getRangeAt(0)
+                        range.deleteContents()
+                        if (typeof el === 'string') {
+                            // string
+                            range.insertNode(document.createTextNode(el))
+                        } else {
+                            // element
+                            range.insertNode(el)
+                        }
+                    }
+                } else if (document.selection && document.selection.createRange) {
+                    document.selection.createRange().text = el
+                }
+            },
+            // http://stackoverflow.com/questions/1125292/how-to-move-cursor-to-end-of-contenteditable-entity/3866442#3866442
+            setEndOfContenteditable: function(contentEditableElement) {
+                var range, selection;
+                if (document.createRange) //Firefox, Chrome, Opera, Safari, IE 9+
+                {
+                    range = document.createRange(); //Create a range (a range is a like the selection but invisible)
+                    range.selectNodeContents(contentEditableElement); //Select the entire contents of the element with the range
+                    range.collapse(false); //collapse the range to the end point. false means collapse to end rather than the start
+                    selection = window.getSelection(); //get the selection object (allows you to change selection)
+                    selection.removeAllRanges(); //remove any selections already made
+                    selection.addRange(range); //make the range you have just created the visible selection
+                } else if (document.selection) //IE 8 and lower
+                {
+                    range = document.body.createTextRange(); //Create a range (a range is a like the selection but invisible)
+                    range.moveToElementText(contentEditableElement); //Select the entire contents of the element with the range
+                    range.collapse(false); //collapse the range to the end point. false means collapse to end rather than the start
+                    range.select(); //Select the range (make it the visible selection
+                }
+            }
+        }
+
+        // run 
+        mod.init()
+
+    }
+    </script>
+</body>
+
+</html>

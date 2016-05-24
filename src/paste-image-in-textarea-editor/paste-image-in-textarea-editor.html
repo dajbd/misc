@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-    <title>Paste Image In Textarea Editor</title>
+    <title>Paste Image In Web Editor</title>
     <style type="text/css">
     textarea,
     .textarea {
@@ -20,9 +20,9 @@
 
 <body>
     <div>
-        <!-- <textarea id="txt-1" autofocus></textarea> -->
-        <div class="textarea" contenteditable id="txt-1"></div>
+        <div class="textarea" contenteditable id="txt-1">试试吧，QQ截图，然后 ctrl + v 粘贴进来吧。其他的富文本暂时没有实现。</div>
         <!-- 实测，兼容 Chrome 49 / Firefox 46.0.1 -->
+        <!-- <textarea id="txt-1" autofocus></textarea> -->
         <!-- 好像 textarea 中不能放img标签的，就换成了div实现 -->
     </div>
     <script>
@@ -39,45 +39,71 @@
         var txt = document.getElementById('txt-1')
         txt.onpaste = function(e) {
             // console.log(e)
-            if (!e.clipboardData) {
-                log('your browser can\'t support paste image in web page.')
-            }
-
             var data = e.clipboardData
+            if (!data) {
+                log('your browser can\'t support paste image in web page.')
+                return
+            }
 
             if (data.types.indexOf('Files') > -1) {
                 [].forEach.call(data.items, function(item) {
                     // console.log(item)
-                    item.type.indexOf('image')
-
-
-                    // var FR = new FileReader();
-                    // var url = FR.readAsDataURL(item.getAsFile())
+                    if (item.type.indexOf('image') === -1) return
 
                     var img = document.createElement('img')
-                        // img.src = 'data:image/gif;'+ url
-                        // img.src = 'data:' + item.type + ';' + url
-                        // img.src = 'data:' + item.type + ';'+window.URL.createObjectURL(item.getAsFile())
-                    img.src = window.URL.createObjectURL(item.getAsFile())
-
                     var target = e.target
-                    var specialTag = ['br']
-                    if (specialTag.indexOf(target.tagName.toLowerCase()) > -1) {
-                        target.parentNode.insertBefore(img, target.nextSibling);
-                    } else {
 
-                        target.appendChild(img);
-                    }
+                    // txt.blur()
 
-                    // console.log(item.getAsString())
-                    // item.getAsString(function (s) {
-                    //     console.log(s)
-                    //     ev.target.appendChild(s); 
-                    // })
+                    // 方式1
+                    var reader = new FileReader()
+                    reader.addEventListener("load", function() {
+                        img.src = this.result // 这种方式，url会是 data:image/png;base64,xxxx
+                        mod.insertImg(target, img)
+
+                        // setTimeout(function () {
+                        //     txt.focus()
+                        // }, 1000)
+                    }, false);
+                    reader.readAsDataURL(item.getAsFile())
+
+
+                    // 方式2
+                    // img.src = window.URL.createObjectURL(item.getAsFile()) // 这种方式，url会是blob://
+                    //     // 这种方式的url，好像没有全量的图片数据，生成的url有些奇怪，不太推荐
+                    //     // 方式1，在url中，就有全量的图片的base64全量数据，推荐使用方式1
+                    // mod.insertImg(target, img)
+
                 })
 
             }
         }
+
+        //
+        var mod = {
+            init: function() {},
+            insertImg: function(target, img) {
+                // 有时候出这样的问题，img插入到br标签中，而且img不会显示
+                var specialTag = ['br', 'img'] // 特殊处理的标签
+                if (specialTag.indexOf(target.tagName.toLowerCase()) > -1) {
+                    // target.parentNode.insertBefore(img, target.nextSibling)
+                    target.parentNode.insertBefore(img, target.previousSibling)
+                } else {
+                    target.appendChild(img)
+                }
+
+
+                // if (target.contenteditable) {
+                //     // 如果target是编辑器本身，特殊处理
+                //     target.appendChild(img)
+                // } else {
+
+                //     target.parentNode.insertBefore(img, target.previousSibling)
+                // }
+            }
+
+        }
+
     }
     </script>
 </body>

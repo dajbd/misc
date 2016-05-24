@@ -140,7 +140,7 @@ gulp.task('dev', function(callback) {
     // console.log(process.argv[2])
 
     isDev = true
-    var devTask = ['lessDev', 'imageMinDev', 'watch', 'httpServer']
+    var devTask = ['lessDev', 'watch', 'httpServer'] // imageMinDev
 
     if (isLivereload) {
         devTask.push('livereload')

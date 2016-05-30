@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+    .new-todo {
+        /*min-width: 14em;*/
+        /*height: 28px;*/
+        width: 100%;
+        box-sizing: border-box;
+        padding: 4px 2px;
+    }
+    
+    .todo-demo li {
+        padding: 6px 0px;
+    }
+    
+    .btn-remove {
+        opacity: 0.6;
+    }
+    
+    .btn-remove:hover,
+    .btn-remove:active {
+        opacity: 1;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="todo-demo">
+        <input class="new-todo" type="text" placeholder="输入待办事项，回车就可以了~" autofocus v-model="newTodo" v-on:keyup.enter="addTodo">
+        <ol>
+            <li v-for="todo in todos">
+                <span>{{todo.text}}</span>
+                <button class="btn-remove" v-on:click="removeTodo($index)">X</button>
+            </li>
+        </ol>
+    </div>
+    <script src="script/vue.js"></script>
+    <script>
+    new function() {
+        new Vue({
+            el: ".todo-demo",
+            data: {
+                newTodo: '',
+                todos: []
+            },
+            methods: {
+                addTodo: function() {
+                    var text = this.newTodo.trim()
+                    if (text) {
+                        this.todos.push({
+                            text: text
+                        })
+                        this.newTodo = ''
+                    }
+                },
+                removeTodo: function(index) {
+                    this.todos.splice(index, 1)
+                }
+            }
+        })
+    }
+    </script>
+</body>
+
+</html>

@@ -5,7 +5,9 @@
   "author": "Engin <denganjun1234@qq.com>",
   "private": true,
   "scripts": {
+    "start": "node build/dev-server.js",
     "dev": "node build/dev-server.js",
+    "dist": "node build/build.js",
     "build": "node build/build.js",
     "test": "",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"

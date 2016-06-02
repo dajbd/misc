@@ -15,6 +15,7 @@ export default {
   },
   props: {
     element: {
+      type: Object,
       default: () => {
         return window
       }
@@ -36,12 +37,17 @@ export default {
     let handle = Vue.filter('debounce')(() => {
       if (element.scrollY > this.distance) {
         this.enableIcon = true
+        this.$dispatch('backToTopShown')
       } else {
         this.enableIcon = false
+        this.$dispatch('backToTopHidden')
       }
     }, 100)
 
     element.addEventListener('scroll', handle)
+  },
+  destroyed () {
+    this.element.removeEventListener('scroll', this.toTop)
   }
 }
 </script>
@@ -53,5 +59,6 @@ export default {
   right: 10px;
   z-index: 999;
   background: rgba(255, 255, 255, 0.8);
+  font-size: 20px;
 }
 </style>

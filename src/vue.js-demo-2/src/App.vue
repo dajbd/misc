@@ -19,7 +19,7 @@ export default {
 
 <style>
 #app{
-  min-height: 2000px;
+  min-height: 2500px;
   text-align: center;
 }
 </style>

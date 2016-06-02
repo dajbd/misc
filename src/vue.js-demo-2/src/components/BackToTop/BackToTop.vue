@@ -1,5 +1,5 @@
 <template>
-  <a class="back-to-top" @click="toTop" v-if="enableIcon">∧</a>
+  <a class="BackToTop" @click="handleToTop" :class="{ shown: isShow }" transition="fade"></a>
 </template>
 
 <script>
@@ -8,53 +8,70 @@ import Vue from 'vue'
 export default {
   data: () => {
     return {
-      enableIcon: false,
+      isShow: false,
       distance: 0
     }
   },
   props: {
     element: {
-      type: Object,
+      type: global.HTMLElement,
       default: () => {
-        return window
+        return global
       }
     }
   },
   methods: {
-    toTop () {
-      window.scrollTo(0, 0)
+    handleToTop () {
+      global.scrollTo(0, 0)
+      this.isShow = false
     },
     handleScroll: Vue.filter('debounce')(function () {
       if (this.element.scrollY > this.distance) {
-        this.enableIcon = true
+        this.isShow = true
         this.$root.$broadcast('backToTopShown')
       } else {
-        this.enableIcon = false
+        this.isShow = false
         this.$root.$broadcast('backToTopHidden')
       }
-    }, 100)
+    }, 150)
 
   },
   ready () {
     this.distance = this.element.innerHeight || this.element.offsetHeight
-
-    let fn = () => this.handleScroll()
-    this.element.addEventListener('scroll', fn)
-
-    this.$on('desctroy', () => {
-      this.element.removeEventListener('scroll', fn)
-    })
+    this.element.addEventListener('scroll', this.handleScroll)
+  },
+  beforeDestroy () {
+    this.element.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
 
 <style>
-.back-to-top{
+.BackToTop {
   position: fixed;
   bottom: 15px;
   right: 10px;
-  z-index: 999;
-  background: rgba(255, 255, 255, 0.8);
+  width: 45.66666667px;
+  height: 45.66666667px;
   font-size: 20px;
+  background: url("./image/back-to-top-iconfont.cn.png");
+  background-size: cover;
+  visibility: hidden;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+}
+
+.BackToTop.shown {
+  visibility: visible;
+}
+
+.BackToTop.fade-transition {
+  transition: all .13s ease;
+  overflow: hidden;
+}
+
+.BackToTop.fade-enter,
+.BackToTop.fade-leave {
+  opacity: 0;
 }
 </style>

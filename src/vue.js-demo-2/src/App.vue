@@ -20,14 +20,17 @@
       <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management.
     </p>
   </div>
+  <back-to-top></back-to-top>
 </template>
 
 <script>
 import Hello from './components/Hello'
+import BackToTop from './components/BackToTop'
 
 export default {
   components: {
-    Hello
+    Hello,
+    BackToTop
   }
 }
 </script>

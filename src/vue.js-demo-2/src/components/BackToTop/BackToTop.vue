@@ -10,7 +10,6 @@ export default {
     return {
       enableIcon: false,
       distance: 0
-      // innerHeight: window.innerHeight,
     }
   },
   props: {
@@ -23,31 +22,28 @@ export default {
   },
   methods: {
     toTop () {
-      // console.log('toStop')
       window.scrollTo(0, 0)
-    }
-  },
-  // created () {
-  //   console.log('c')
-  // },
-  ready () {
-    this.distance = this.element.innerHeight || this.element.offsetHeight
-
-    let { element } = this
-    let handle = Vue.filter('debounce')(() => {
-      if (element.scrollY > this.distance) {
+    },
+    handleScroll: Vue.filter('debounce')(function () {
+      if (this.element.scrollY > this.distance) {
         this.enableIcon = true
-        this.$dispatch('backToTopShown')
+        this.$root.$broadcast('backToTopShown')
       } else {
         this.enableIcon = false
-        this.$dispatch('backToTopHidden')
+        this.$root.$broadcast('backToTopHidden')
       }
     }, 100)
 
-    element.addEventListener('scroll', handle)
   },
-  destroyed () {
-    this.element.removeEventListener('scroll', this.toTop)
+  ready () {
+    this.distance = this.element.innerHeight || this.element.offsetHeight
+
+    let fn = () => this.handleScroll()
+    this.element.addEventListener('scroll', fn)
+
+    this.$on('desctroy', () => {
+      this.element.removeEventListener('scroll', fn)
+    })
   }
 }
 </script>

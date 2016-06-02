@@ -44,7 +44,12 @@
         <tab :data="list"></tab>
         <hr>
         <br>
+        <!-- 直接指定数字2 -->
         <tab :data="list" :active-index="2"></tab>
+        <hr>
+        <br>
+        <!-- 读取data中的activeIndex -->
+        <tab :data="list" :active-index="activeIndex"></tab>
     </div>
     <div class="template">
         <!-- 组件模板 -->
@@ -83,7 +88,7 @@
         methods: {
             navItemClick: function(index) {
                 this.activeIndex = index
-                console.log(index)
+                // console.log(index)
             }
         }
     })
@@ -107,7 +112,8 @@
             }, {
                 title: 'Nav 5',
                 content: 'content 5 '
-            }]
+            }],
+            activeIndex: 3
         }
     })
     </script>

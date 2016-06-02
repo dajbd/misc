@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+    .template {
+        display: none!important;
+    }
+    /*tab组件的样式*/
+    
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .tab-nav-list .tab-nav-item {
+        display: inline-block;
+        padding: 4px 10px;
+        background: #eee;
+    }
+    
+    .tab-nav-list .tab-nav-item.active {
+        font-weight: bold;
+    }
+    
+    .tab-content-item {
+        display: none;
+    }
+    
+    .tab-content-item.active {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="demo1">
+        <!-- 组件的调用 -->
+        <tab :data="list"></tab>
+        <hr>
+        <br>
+        <tab :data="list" :active-index="2"></tab>
+    </div>
+    <div class="template">
+        <!-- 组件模板 -->
+        <div id="tab-comp">
+            <div class="tab">
+                <ul class="tab-nav-list">
+                    <li class="tab-nav-item" v-for="item in data" :class="{active: activeIndex === $index}" @click="navItemClick($index)"><a>{{ item.title }}</a></li>
+                </ul>
+                <ul class="tab-content-list">
+                    <li class="tab-content-item" v-for="item in data" :class="{active: activeIndex === $index}">{{ item.content }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="script/vue.js"></script>
+    <script>
+    // 组件定义
+    Vue.component('tab', {
+        template: '#tab-comp',
+        props: {
+            'data': {
+                type: Array,
+                default: function() {
+                    return []
+                }
+            },
+            'activeIndex': {
+                type: Number,
+                default: 0
+            }
+        },
+        propActiveIndex: {
+            type: Number,
+            default: 0
+        },
+        methods: {
+            navItemClick: function(index) {
+                this.activeIndex = index
+                console.log(index)
+            }
+        }
+    })
+
+
+    new Vue({
+        el: '.demo1',
+        data: {
+            list: [{
+                title: 'Nav 1',
+                content: 'content 1 '
+            }, {
+                title: 'Nav 2',
+                content: 'content 2 '
+            }, {
+                title: 'Nav 3',
+                content: 'content 3 '
+            }, {
+                title: 'Nav 4',
+                content: 'content 4 '
+            }, {
+                title: 'Nav 5',
+                content: 'content 5 '
+            }]
+        }
+    })
+    </script>
+</body>
+
+</html>

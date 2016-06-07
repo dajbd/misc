@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+    .point-panel {
+        position: relative;
+        text-align: center;
+    }
+    
+    .point {
+        position: relative;
+        border-radius: 50%;
+        background: lightblue;
+        /*min-height: 4.5em;*/
+        line-height: 4.5em;
+        min-width: 4.5em;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .line {
+        border-top: 1px solid #eee;
+        display: inline-block;
+        width: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+    
+    .point .point {
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 100px);
+        /**/
+        zoom: 0.6;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="point-panel">
+            <span class="point">
+				<span class="text">Node</span>
+            <span class="point">0</span>
+            <i class="line"></i>
+            <span class="point">0</span>
+            <i class="line"></i>
+            <span class="point">0</span>
+            <i class="line"></i>
+            <span class="point">0</span>
+            <i class="line"></i>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

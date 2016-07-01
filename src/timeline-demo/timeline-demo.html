@@ -21,9 +21,28 @@
     .timeline .item {
         position: relative;
         margin-left: 3em;
-        padding-left: 0.4em;
+        padding-left: 0.6em;
+        padding-bottom: 1em;
         border-left: 1px solid #ccc;
         font-size: 14px;
+    }
+    
+    .timeline .item:last-child {
+        padding-bottom: 0.5em;
+    }
+    
+    .timeline .item:last-child:after {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        content: '.';
+        font-size: 0;
+        border-style: solid;
+        border-width: 5px;
+        border-color: transparent;
+        border-top-color: #ccc;
+        margin-left: -5px;
+        margin-bottom: -12px;
     }
     
     .timeline .title {
@@ -84,15 +103,15 @@
 <body>
     <div class="timeline">
         <ul class="list">
-            <li class="item">
-                <h3 class="title">公司成立</h3>
+            <li class="item" v-for="item in timeline">
+                <h3 class="title" v-text="item.title"></h3>
                 <div class="content-wrapper">
-                    <div class="content">吧啦吧啦吧啦吧啦</div>
+                    <div class="content" v-text="item.content"></div>
                     <i class="icon icon-arrow"></i>
                 </div>
                 <div class="time-wrapper">
-                    <time>2010</time>
-                    <time>7-2</time>
+                    <time v-text="item.time.substring(0, 4)"></time>
+                    <time v-text="item.time.substring(5)"></time>
                 </div>
                 <i class="icon icon-dot"></i>
             </li>
@@ -100,7 +119,7 @@
     </div>
     <script src="script/vue.js"></script>
     <script>
-    var data = [{
+    var timeline = [{
         time: '2010-7-2',
         title: '公司成立',
         content: '祝贺公司成立，Happy Birthday!'
@@ -113,6 +132,13 @@
         title: '大事发生',
         content: '吧啦吧啦吧啦吧啦……吧啦吧啦吧啦吧啦……吧啦吧啦吧啦吧啦……'
     }]
+
+    new Vue({
+        el: '.timeline',
+        data: {
+            timeline: timeline
+        }
+    })
     </script>
 </body>
 

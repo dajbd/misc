@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Timeline Demo</title>
+    <style type="text/css">
+    html,
+    body,
+    ul,
+    li {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .timeline .list {
+        list-style: none;
+    }
+    
+    .timeline .item {
+        position: relative;
+        margin-left: 3em;
+        padding-left: 0.4em;
+        border-left: 1px solid #ccc;
+        font-size: 14px;
+    }
+    
+    .timeline .title {
+        padding: 0;
+        margin: 0;
+        padding-bottom: 0.5em;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    .timeline .time-wrapper {
+        position: absolute;
+        top: 0;
+        left: -3em;
+    }
+    
+    .timeline time {
+        display: block;
+        text-align: right;
+    }
+    
+    .timeline time:first-child {
+        font-size: 16px;
+        font-weight: bold;
+    }
+    
+    .timeline .icon-dot {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        margin-left: -5px;
+        border-radius: 50%;
+        background: lightblue;
+    }
+    
+    .timeline .content-wrapper {
+        position: relative;
+        background: lightblue;
+        border-radius: 6px;
+        color: #fff;
+        padding: 0.9em;
+    }
+    
+    .timeline .icon-arrow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-left: -6px;
+        border-style: solid;
+        border-color: lightblue lightblue transparent transparent;
+        border-width: 0px 11px 8px 0px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="timeline">
+        <ul class="list">
+            <li class="item">
+                <h3 class="title">公司成立</h3>
+                <div class="content-wrapper">
+                    <div class="content">吧啦吧啦吧啦吧啦</div>
+                    <i class="icon icon-arrow"></i>
+                </div>
+                <div class="time-wrapper">
+                    <time>2010</time>
+                    <time>7-2</time>
+                </div>
+                <i class="icon icon-dot"></i>
+            </li>
+        </ul>
+    </div>
+    <script src="script/vue.js"></script>
+    <script>
+    var data = [{
+        time: '2010-7-2',
+        title: '公司成立',
+        content: '祝贺公司成立，Happy Birthday!'
+    }, {
+        time: '2012-6-1',
+        title: '儿童节',
+        content: '吧啦吧啦吧啦吧啦……'
+    }, {
+        time: '2015-6-4',
+        title: '大事发生',
+        content: '吧啦吧啦吧啦吧啦……吧啦吧啦吧啦吧啦……吧啦吧啦吧啦吧啦……'
+    }]
+    </script>
+</body>
+
+</html>

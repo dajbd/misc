@@ -20,6 +20,7 @@
     
     .timeline .item {
         position: relative;
+        display: block;
         margin-left: 3em;
         padding-left: 0.6em;
         padding-bottom: 1em;
@@ -69,8 +70,11 @@
         font-weight: bold;
     }
     
-    .timeline .icon-dot {
+    /*dot icon*/
+    .timeline .item:before {
         position: absolute;
+        content: '.';
+        font-size: 0;
         top: 0;
         left: 0;
         width: 10px;
@@ -88,8 +92,10 @@
         padding: 0.9em 0.6em;
     }
     
-    .timeline .icon-arrow {
+    .timeline .content-wrapper:before {
         position: absolute;
+        content: '.';
+        font-size: 0;
         top: 0;
         left: 0;
         margin-left: -6px;
@@ -107,13 +113,11 @@
                 <h3 class="title" v-text="item.title"></h3>
                 <div class="content-wrapper">
                     <div class="content" v-text="item.content"></div>
-                    <i class="icon icon-arrow"></i>
                 </div>
                 <div class="time-wrapper">
                     <time v-text="item.time.substring(0, 4)"></time>
                     <time v-text="item.time.substring(5)"></time>
                 </div>
-                <i class="icon icon-dot"></i>
             </li>
         </ul>
     </div>

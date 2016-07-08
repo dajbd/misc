@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html ms-controller="app">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="小邓子daj">
+    <meta name="keywords" content="Demo演示，作者：小邓子daj">
+    <meta name="description" content="Demo演示，作者：小邓子daj" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <LINK href="favicon.ico" type="image/x-icon" rel="icon" />
+    <title>Demo演示-小邓子daj</title>
+    <!-- 本页面的开发时间已经很久远(貌似是2014)，有些恶心的东西，请忽略 -->
+    <style type="text/css">
+    body,
+    h1,
+    h2,
+    ul,
+    dl,
+    dt,
+    dd {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-size: 14px;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif 'Microsoft YaHei';
+    }
+    
+    a {
+        text-decoration: none;
+        outline: 0;
+    }
+    
+    a:focus {
+        outline: 0;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    img {
+        border: 0;
+        outline: 0;
+    }
+    
+    .clearfix:after {
+        content: ".";
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        clear: both;
+        height: 0;
+    }
+    
+    .clearfix {
+        *zoom: 1;
+    }
+    
+    .wp {
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .home-top-bar {
+        height: 80px;
+        background-color: #1190f1;
+    }
+    
+    .logo {
+        margin-top: 16px;
+    }
+    
+    .home-top-bar .wp {
+        position: relative;
+    }
+    
+    .home-top-bar ul {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 0;
+    }
+    
+    .home-top-bar li a {
+        color: #fff;
+        display: block;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+    }
+    
+    .home-top-bar .active,
+    .home-top-bar li a:hover {
+        background-color: #1086e1;
+        ;
+    }
+    
+    .home-top-bar li {
+        float: left;
+        width: 90px;
+        height: 80px;
+        color: #fff;
+    }
+    
+    .banner {
+        background: url(images/shadow.png) repeat-x #1190f1;
+        height: 620px;
+    }
+    
+    .banner .wp {
+        position: relative;
+    }
+    
+    .banner .logo_big {
+        background: url('images/logo_big.png') no-repeat;
+        width: 528px;
+        height: 626px;
+        position: absolute;
+    }
+    
+    .banner .info {
+        padding: 140px 0px 0px 552px;
+        color: #fff;
+        font-size: 0.8em;
+    }
+    
+    .banner h2 {
+        font-size: 4.8em;
+        font-weight: normal;
+    }
+    
+    .btn_download,
+    .icon_border,
+    .inner_icon,
+    .cross_line,
+    .contact_info dt {
+        background-image: url('images/sp.png');
+        background-repeat: no-repeat;
+    }
+    
+    .btn_download {
+        display: block;
+        /*
+		border:2px solid #fff;
+		border-radius:12px;
+		*/
+        width: 224px;
+        font-size: 22px;
+        line-height: 1em;
+        text-align: left;
+        text-indent: -999em;
+        color: #fff;
+        padding: 22px 0px 22px 0px;
+        margin: 1em 3em 1em 0em;
+        background-position: 0 -378px;
+    }
+    
+    .btn_download:hover {
+        background-position: 0 -445px;
+    }
+    
+    .version_info {
+        line-height: 1.7em;
+    }
+    
+    .icon_border {
+        display: block;
+        background-position: 0px -144px;
+        width: 219px;
+        height: 219px;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .intro {
+        padding-top: 78px;
+        clear: both;
+    }
+    
+    .intro li {
+        float: left;
+        width: 218px;
+        padding: 0 52px;
+        border-right: #e7f4fe solid 1px;
+        color: #1190f1;
+    }
+    
+    .cross_line {
+        background-position: -266px -365px;
+        width: 158px;
+        height: 158px;
+        left: 30px;
+        top: 34px;
+        display: block;
+        position: absolute;
+    }
+    
+    .inner_icon {
+        display: block;
+        margin: 50px auto;
+        width: 126px;
+        height: 126px;
+    }
+    
+    .no_border {
+        border: none!important;
+    }
+    
+    .no_plugin .inner_icon {
+        background-position: -164px 0;
+    }
+    
+    .fast .inner_icon {
+        background-position: -316px 4px;
+    }
+    
+    .intro h3,
+    .intro p {
+        padding-left: 40px;
+    }
+    
+    .intro h3 {
+        font-size: 2.5em;
+        font-weight: normal;
+    }
+    
+    .contact_info {
+        border-top: #e7f4fe solid 1px;
+        border-bottom: #e7f4fe solid 1px;
+        color: #1190f1;
+        width: 930px;
+        margin: 60px auto 0px;
+        height: 60px;
+        padding: 23px 0px 23px 30px;
+    }
+    
+    .contact_info .item {
+        float: left;
+        width: 300px;
+        position: relative;
+        font-size: 0.8em;
+        line-height: 1.7em;
+    }
+    
+    .contact_info dt {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+    }
+    
+    .contact_info dd {
+        padding-left: 70px;
+    }
+    
+    .contact_info .tel dt {
+        background-position: -263px -179px;
+    }
+    
+    .contact_info .qq dt {
+        background-position: -346px -175px;
+    }
+    
+    .contact_info .phonenumber {
+        font-size: 2em;
+    }
+    
+    .contact_info .share dt {
+        background: none;
+        line-height: 60px;
+    }
+    
+    .contact_info .share a {
+        display: block;
+        width: 34px;
+        height: 30px;
+        background-image: url('images/sp.png');
+        background-repeat: no-repeat;
+        float: left;
+        margin: 14px 10px 0 0;
+    }
+    
+    .contact_info .sina_weibo {
+        background-position: -267px -297px;
+    }
+    
+    .contact_info .qq_weibo {
+        background-position: -314px -299px;
+    }
+    
+    .contact_info .qq_zone {
+        background-position: -357px -297px;
+    }
+    
+    .footer {
+        text-align: center;
+        padding-top: 40px;
+        font-size: 0.8em;
+    }
+    
+    .footer,
+    .footer a {
+        color: #c8c8c8;
+    }
+    /* 大logo动画 */
+    
+    @-webkit-keyframes logo_big_anim {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateY(300px)
+        }
+        50% {
+            opacity: 1;
+            -webkit-transform: translateY(-15px)
+        }
+        100% {
+            -webkit-transform: translateY(0)
+        }
+    }
+    
+    @keyframes logo_big_anim {
+        0% {
+            opacity: 0;
+            transform: translateY(300px)
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(-15px)
+        }
+        100% {
+            transform: translateY: translateY(0)
+        }
+    }
+    
+    .logo_big {
+        -webkit-animation: logo_big_anim 1.5s .5s ease both;
+        animation: logo_big_anim 1.5s .5s ease both;
+    }
+    /* 下载信息-动画 */
+    
+    @-webkit-keyframes info_anim {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateY(-300px)
+        }
+        50% {
+            opacity: 1;
+            -webkit-transform: translateY(15px)
+        }
+        100% {
+            -webkit-transform: translateY(0)
+        }
+    }
+    
+    @keyframes info_anim {
+        0% {
+            opacity: 0;
+            transform: translateY(-300px)
+        }
+        50% {
+            opacity: 1;
+            transform: translateY(15px)
+        }
+        100% {
+            transform: translateY: translateY(0)
+        }
+    }
+    
+    .banner .info {
+        -webkit-animation: info_anim 1.5s .5s ease both;
+        animation: info_anim 1.5s .5s ease both;
+    }
+    /* 无广告图标-动画 */
+    
+    @-webkit-keyframes no_ad_icon_anim {
+        0% {
+            -webkit-transform: rotate(0deg) scale(1) translateY(0px)
+        }
+        50% {
+            -webkit-transform: rotate(-10deg) scale(1.1) translateY(-15px)
+        }
+        100% {
+            -webkit-transform: rotate(0deg) scale(1) translateY(0)
+        }
+    }
+    
+    @keyframes no_ad_icon_anim {
+        0% {
+            transform: rotate(0deg) scale(1) translateY(0px)
+        }
+        50% {
+            transform: rotate(-10deg) scale(1.1) translateY(-15px)
+        }
+        100% {
+            transform: rotate(0deg) scale(1) translateY(0)
+        }
+    }
+    
+    .no_ad .icon_border:hover .inner_icon {
+        -webkit-animation: no_ad_icon_anim .4s linear;
+        animation: no_ad_icon_anim .4s linear;
+    }
+    /* 无插件图标-动画 */
+    
+    @-webkit-keyframes no_plugin_anim {
+        0% {
+            -webkit-transform: rotate(180deg);
+        }
+        100% {
+            -webkit-transform: rotate(0deg);
+        }
+    }
+    
+    @keyframes no_plugin_anim {
+        0% {
+            transform: rotate(180deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+    
+    .no_plugin .icon_border:hover .inner_icon {
+        -webkit-animation: no_plugin_anim 1s 0s ease both;
+        animation: no_plugin_anim 1s 0s ease both;
+    }
+    /* 下载快-动画 */
+    
+    @-webkit-keyframes fast_icon_anim {
+        0% {
+            -webkit-transform: translateY(0px)
+        }
+        50% {
+            -webkit-transform: translateY(-15px)
+        }
+        75% {
+            -webkit-transform: translateY(-5px)
+        }
+        100% {
+            -webkit-transform: translateY(0)
+        }
+    }
+    
+    @keyframes fast_icon_anim {
+        0% {
+            transform: translateY(0px)
+        }
+        50% {
+            transform: translateY(-15px)
+        }
+        75% {
+            transform: translateY(-5px)
+        }
+        100% {
+            transform: translateY(0)
+        }
+    }
+    
+    .intro .fast .inner_icon {
+        -webkit-animation: fast_icon_anim 1.5s linear infinite;
+        animation: fast_icon_anim 1.5s linear infinite;
+    }
+    </style>
+</head>
+
+<body>
+    <div class='bar home-top-bar'>
+        <div class='wp'>
+            <h1>
+				<a href='####'><img src='images/logo.png' class='logo'></a>
+			</h1>
+            <ul class='nav'>
+                <li><a href='####' class='active'>首页</a></li>
+                <li><a href='####'>产品故事</a></li>
+                <li><a href='####'>更新日志</a></li>
+                <li><a href='####'>论坛</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class='banner '>
+        <div class='wp'>
+            <div class='logo_big png'>
+            </div>
+            <div class='info'>
+                <h2 ms-html="data.mainText"></h2>
+                <p>无广告，无插件，下载超快</p>
+                <a class='btn_download' href="http://down.sandai.net/thunderspeed/ThunderSpeed1.0.15.168.exe" title='立即下载'>立即下载</a>
+                <div class='version_info'>
+                    版本：1.0.15.168（2014年09月15日）
+                    <br /> 支持系统：32/64位 WinXP/Vista/Win7/Win8
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='wp'>
+        <ul class='intro clearfix'>
+            <li class='no_ad'>
+                <span class='icon_border'>
+					<i class='inner_icon'></i>
+					<i class='cross_line'></i>
+				</span>
+                <h3 ms-html="data.mainFeatureList[0].title"></h3>
+                <p ms-html="data.mainFeatureList[0].content"></p>
+            </li>
+            <li class='no_plugin'>
+                <span class='icon_border'>
+					<i class='inner_icon'></i>
+					<i class='cross_line'></i>
+				</span>
+                <h3 ms-html="data.mainFeatureList[1].title"></h3>
+                <p ms-html="data.mainFeatureList[1].content"></p>
+            </li>
+            <li class='fast no_border'>
+                <span class='icon_border'>
+					<i class='inner_icon'></i>
+				</span>
+                <h3 ms-html="data.mainFeatureList[2].title"></h3>
+                <p ms-html="data.mainFeatureList[2].content"></p>
+            </li>
+        </ul>
+    </div>
+    <div class='bar contact_info'>
+        <dl class='item tel'>
+            <dt class='icon'></dt>
+            <dd>
+                <p>客服电话（7x24小时）</p>
+                <span class='phonenumber' ms-html="data.tel"></span>
+            </dd>
+        </dl>
+        <dl class='item qq'>
+            <dt class='icon'></dt>
+            <dd ms-html="data.qqGroup"></dd>
+        </dl>
+        <dl class='item share'>
+            <dt class='icon'>分享到</dt>
+            <dd>
+                <a href='####' class='sina_weibo' title='新浪微博'></a>
+                <a href='####' class='qq_weibo' title='腾讯微博'></a>
+                <a href='####' class='qq_zone' title='QQ空间'></a>
+            </dd>
+        </dl>
+    </div>
+    <div class='footer'>
+        <div class='wp'>
+            <div class='links'>
+                <a href='####'>关于作者</a> |
+                <a href='####'>广告服务</a> |
+                <a href='####'>商务合作</a>
+            </div>
+            <p ms-html="data.comment"></p>
+            <p>© 小邓子daj 版权所有</p>
+        </div>
+    </div>
+    <!-- 为了避免被 搜.索.引`擎 认为是仿冒的垃圾网站，把部分文字变成js去生成 -->
+    <!-- 为了更好的浏览器兼容，放弃国际范儿的 vue.js，使用国产 av.js -->
+    <script src="scripts/avalon.min.js"></script>
+    <script>
+    new function() {
+        avalon.define({
+            $id: "app",
+            data: {
+                mainText: '匠人心作，<br />简约而不简单',
+                mainFeatureList: [{
+                    title: '无广告',
+                    content: '去除广告，还你清爽迅雷<br /> 去除游戏及新闻弹窗广告<br /> 追求极简之美'
+                }, {
+                    title: '无插件',
+                    content: '抛弃其它产品捆绑安装<br /> 去除迅雷看看及游戏插件<br /> 无插件，启动更快'
+                }, {
+                    title: '下载快',
+                    content: '回归下载本质<br /> 优化产品架构及服务<br /> 专注下载，所以更快'
+                }],
+                tel: '400-1111-000',
+                qqGroup: '产品讨论吐槽QQ群<br /> 296159992<br /> 86062907',
+                comment: '注：此页面参考迅雷极速版首页，但是做了一些修改，比如“无广告”图标的动画、“下载快”图标的动画。' 
+                	+ '<br />推荐在chrome、firefox下查看此页面，这些浏览器才支持最新的CSS3特性。' 
+                	+ '<br /><a href=\'http://vip.xunlei.com/fast_xl\'>点此回到 迅雷原页面</a>'
+
+            }
+        })
+
+        avalon.scan()
+    }
+    </script>
+    <!--[if IE 6]>
+	<script type="text/javascript" src="scripts/ie6png.js"></script>
+	<![endif]-->
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+    
+    </style>
+</head>
+
+<body>
+    <div class="demo1">
+        <br>
+        {{ k1 }}|<span v-text="k1"></span>
+        <br>
+        {{ k2 }}|<span v-text="k2"></span>
+        <br>
+        {{ k3 }}|<span v-text="k3"></span>
+        <br>
+        <hr>
+        <br>
+        {{ k3 }}|{{* k3 }}|<span v-text.once="k3"></span>
+        <!-- v-text.once 并不能实现 once bind，他还是双向绑定的 -->
+
+
+    </div>
+    <script src="script/vue.js"></script>
+    <script>
+    new function() {
+
+        var demo1VM = new Vue({
+            el: '.demo1',
+            data: {
+                k1: null,
+                k2: undefined,
+                k3: 'normal'
+            }
+        })
+
+
+        setTimeout(function () {
+            demo1VM.k1 = null
+            demo1VM.k2 = null
+            demo1VM.k3 = null
+        }, 1000)
+
+         setTimeout(function () {
+            demo1VM.k1 = 'v1'
+            demo1VM.k2 = 'v2'
+            demo1VM.k3 = 'v3'
+        }, 3000)
+
+
+         setTimeout(function () {
+             demo1VM.k3 = 'v3 5000'
+         }, 5000)
+
+    }
+    </script>
+</body>
+
+</html>

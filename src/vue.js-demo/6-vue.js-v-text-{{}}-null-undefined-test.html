@@ -15,7 +15,8 @@
         <br>
         {{ k1 }}|<span v-text="k1"></span>
         <br>
-        {{ k2 }}|<span v-text="k2"></span>
+        {{ k2 }}|{{* k2 }}|<span v-text="k2"></span>
+        <!-- {{* }} 竟然输出了 undefined 值，我擦，应该是 bug 了 -->
         <br>
         {{ k3 }}|<span v-text="k3"></span>
         <br>

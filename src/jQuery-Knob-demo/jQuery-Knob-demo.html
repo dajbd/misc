@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+
+    </style>
+    <!--[if lt IE 9]>
+    <script src="script/excanvas.js"></script>
+    <![endif]-->
+    <script src="script/jquery-1.11.1.min.js"></script>
+    <script src="script/jquery.knob-1.2.13.min.js"></script>
+</head>
+
+<body>
+    <h1>jQuery Knob 拨号盘、表盘组件：</h1>
+    <div>
+        <h3>正常的拨号盘：</h3>
+        <input class="knob" data-angleOffset="-125" data-angleArc="250" data-fgColor="#66EE66" value="45">
+    </div>
+    <div>
+        <h3>不可操作，只读状态：</h3>
+        <input class="knob" data-angleOffset="-125" data-angleArc="250" data-fgColor="#66EE66" value="45" data-readOnly="true">
+    </div>
+    <div>
+        <h3>反转方向：</h3>
+        <input class="knob" data-angleOffset="-125" data-angleArc="250" data-linecap="round" data-thickness="0.2" data-fgColor="#66EE66" data-rotation="anticlockwise" value="35">
+    </div>
+    <div>
+        <h3>环形：</h3>
+        <input class="knob" data-width="100" value="35">
+    </div>
+    <div>
+        <h3>不显示中间的 input ：</h3>
+        <input class="knob" data-width="100" data-displayInput="false" value="35">
+    </div>
+    <script>
+    $(function() {
+        // 禁用 readonly 的元素还是能进入输入模式 （iOS 9，safari）
+        // 方式1， 实测问题：点击，有黑色阴影效果但是很快消失
+        // $(document).on('focus', 'input[readonly]', function(e) {
+        //      $(this).trigger('blur')
+        //     // return false
+        // })
+        // 方式2，实测比方式1更好，点击，没有黑色阴影
+        $(document).on('touchstart', 'input[readonly]', function(e) {
+            return false
+        })
+
+        var knobEls = $('.knob')
+        knobEls.knob()
+
+        // 默认的，拨号盘组件，既可以拖动，又可以使用 input 输入，而我只要拖动的效果
+        // 这样解决：
+        // 禁止拨号盘中间的 input 的输入行为
+        // 直接在 html 写 readonly 不行，只好用 js 代码来写了
+        var options = {
+            readonly: 'true'
+                // tabindex 不是必须的
+                // tabindex: '-1'
+        }
+        knobEls.eq(0).attr(options)
+    })
+    </script>
+</body>
+
+</html>

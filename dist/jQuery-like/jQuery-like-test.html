@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div>
+    	<div id="div-1">div1</div>
+    	<div id="div-2">div2</div>
+    </div>
+    <script src="./jQuery-like.js"></script>
+    <script>
+    var div1 = $('#div-1')
+    console.log(div1)
+    div1.hide()
+
+
+    setTimeout(function () {
+    	div1.show()
+    }, 2000)
+
+
+    var div2 = $('#div-2')
+    // 链式调用
+    div2.css('backgroundColor', 'lightblue').css('fontSize', '40px')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+
+    </style>
+    <script src="script/jquery-1.11.1.min.js"></script>
+    <!-- Mobiscroll JS and CSS Includes -->
+    <script src="mobiscroll-2.17.2/js/mobiscroll.core.js"></script>
+    <script src="mobiscroll-2.17.2/js/mobiscroll.frame.js"></script>
+    <script src="mobiscroll-2.17.2/js/mobiscroll.scroller.js"></script>
+    <script src="mobiscroll-2.17.2/js/mobiscroll.util.datetime.js"></script>
+    <script src="mobiscroll-2.17.2/js/mobiscroll.datetimebase.js"></script>
+    <script src="mobiscroll-2.17.2/js/mobiscroll.datetime.js"></script>
+    <!-- language -->
+    <script src="mobiscroll-2.17.2/js/i18n/mobiscroll.i18n.zh.js"></script>
+
+    <link href="mobiscroll-2.17.2/css/mobiscroll.animation.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll-2.17.2/css/mobiscroll.frame.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll-2.17.2/css/mobiscroll.icons.css" rel="stylesheet" type="text/css" />
+    <link href="mobiscroll-2.17.2/css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+    <script>
+    $(function() {
+    	// 设置默认值 语言
+    	$.mobiscroll.setDefaults({
+    		lang: 'zh'
+    	})
+
+        $('#demo_date').mobiscroll().date()
+        $('#demo_datetime').mobiscroll().datetime()
+        $('#demo_time').mobiscroll().time()
+        $('#demo_time_2').mobiscroll().time({
+        	timeWheels: 'HH:ii:ss',
+            timeFormat: 'HH:ii:ss',
+            lang: 'zh'
+        })
+
+    })
+    </script>
+</head>
+
+<body>
+	<br>
+	<br>
+    <div>
+        <!-- Date demo markup -->
+        <div data-role="fieldcontain" class="demo-cont" id="demo_cont_date">
+            <label for="demo_date">Try Date</label>
+            <input type="text" id="demo_date" />
+        </div>
+		<br>
+		<br>
+
+        <!-- Date & Time demo markup -->
+        <div data-role="fieldcontain" class="demo-cont" id="demo_cont_datetime">
+            <label for="demo_datetime">Try Date & Time</label>
+            <input type="text" id="demo_datetime" />
+        </div>
+        <br>
+		<br>
+
+        <!-- Time demo markup -->
+        <div data-role="fieldcontain" class="demo-cont" id="demo_cont_time">
+            <label for="demo_time">Try Time</label>
+            <input type="text" id="demo_time" />
+        </div>
+		<br>
+		<br>
+
+		<!-- Time demo markup -->
+		<!-- 除了时分，再加上秒 -->
+        <div data-role="fieldcontain" class="demo-cont" id="demo_cont_time">
+            <label for="demo_time">Try Time</label>
+            <input type="text" id="demo_time_2" />
+        </div>
+		<br>
+		<br>
+
+    </div>
+</body>
+
+</html>

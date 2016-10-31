@@ -21,8 +21,8 @@
         <!-- 路由外链 -->
         <router-view></router-view>
     </div>
-    <script src="script/vue.js"></script>
-    <!-- <script src="script/vue-1.0.28.js"></script> -->
+    <!-- <script src="script/vue.js"></script> -->
+    <script src="script/vue-1.0.28.js"></script>
     <script src="script/vue-router-0.7.13.js"></script>
     <script>
     // 定义组件
@@ -49,13 +49,17 @@
 
     // 路由器需要一个根组件。
     // 出于演示的目的，这里使用一个空的组件，直接使用 HTML 作为应用的模板
-    var App = {}
+    var App = {
+        ready: function() {
+            alert(location.href)
+        }
+    }
 
     // 创建一个路由器实例
     // 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
     // var router = new VueRouter()
     var router = new VueRouter({
-        history: true
+        // history: true
     })
 
     // 定义路由规则
@@ -78,6 +82,29 @@
     // 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
     router.start(App, '#app')
     </script>
+    <!--
+iOS 微信 6.3.29，
+一个html页面，
+使用 vue router 转到一个路由页面，
+alert 弹出新的url，url是最新转到的路由的url，
+但是复制url、使用Safari打开，显示的url，都是老的url，还是那个 .html 的页面的url。
+
+
+安卓微信 复制 url ，正常，跳出也挂了
+复制的url 是新的，但是跳出去，还是老的url
+
+
+2016-10-31 23:58:30
+发现：
+history: false 之后，也就是使用 hash 的时候，微信就正常了，
+iOS 测试：
+复制链接正常，Safari打开正常，都可以拿到最新的url。
+
+安卓测试，
+复制正常，浏览器打开url是旧的。
+
+真是服了。
+     -->
 </body>
 
 </html>

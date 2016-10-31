@@ -12,22 +12,35 @@
 
 <body>
     <div id="app">
-      <h1>Hello App!</h1>
-      <p>
-        <!-- 使用指令 v-link 进行导航。 -->
-        <a v-link="{ path: '/foo' }">Go to Foo</a>
-        <a v-link="{ path: '/bar' }">Go to Bar</a>
-      </p>
-      <!-- 路由外链 -->
-      <router-view></router-view>
+        <h1>Hello App!</h1>
+        <p>
+            <!-- 使用指令 v-link 进行导航。 -->
+            <a v-link="{ path: '/foo' }">Go to Foo</a>
+            <a v-link="{ path: '/bar' }">Go to Bar</a>
+        </p>
+        <!-- 路由外链 -->
+        <router-view></router-view>
     </div>
     <script src="script/vue.js"></script>
+    <!-- <script src="script/vue-1.0.28.js"></script> -->
     <script src="script/vue-router-0.7.13.js"></script>
     <script>
-
     // 定义组件
     var Foo = {
-        template: '<p>This is foo!</p>'
+        template: '<p>This is foo!</p> <br> <b @click="doFn">replace!</b>',
+        methods: {
+            doFn: function() {
+                this.$router.go({
+                    path: 'foo2',
+                    query: {
+                        k: 'v1',
+                        k2: 'v2'
+                    }
+                })
+
+                alert('go done, the url:' + location.href)
+            }
+        }
     }
 
     var Bar = {
@@ -42,7 +55,7 @@
     // 创建实例时可以传入配置参数进行定制，为保持简单，这里使用默认配置
     // var router = new VueRouter()
     var router = new VueRouter({
-    	history: true
+        history: true
     })
 
     // 定义路由规则
@@ -53,6 +66,9 @@
         '/foo': {
             component: Foo
         },
+        '/foo2': {
+            component: Foo
+        },
         '/bar': {
             component: Bar
         }
@@ -61,7 +77,6 @@
     // 现在我们可以启动应用了！
     // 路由器会创建一个 App 实例，并且挂载到选择符 #app 匹配的元素上。
     router.start(App, '#app')
-
     </script>
 </body>
 

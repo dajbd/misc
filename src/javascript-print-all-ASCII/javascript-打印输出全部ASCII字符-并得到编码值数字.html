@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+<title>Demo</title>
+<style type="text/css">
+
+</style>
+<script>
+var length = 128
+
+for (var i =0; i< length; i++) {
+	console.log(String.fromCharCode(i), i)
+	// 0-31 是不可见的，127 也是不可见的，这些字符一般是用于控制的，比如退格、退出、取消、确定等
+	// 可见的字符：32-126
+}
+
+// 上面是从数字编码转换字符
+
+// 下面，从字符，得到他的数字编码
+
+var index = 0
+console.log('ABC'.charCodeAt(index))  // 65
+// index 是字符串中取出这个 index 位置的字符
+
+
+
+/*
+
+更严谨的密码验证：
+// /^[\x00-\x7F]*$/  // 十六进制的表示，ASCII 字符全部字符
+// /^[\x21-\x7E]*$/  // 十六进制的表示，ASCII 字符的可见字符(过滤了空格)(共计94个字符)，这些作为密码字符才严谨，才可控，否则可能让中日韩文验证通过
+condition: /^[\x21-\x7E]{6,}$/
+
+*/
+</script>
+</head>
+<body>
+
+	<small>
+	代码的效果，请看调试控制台。
+	</small>
+
+<br>
+<br>
+<br>
+<br>
+<pre>
+ASCII（发音：英语发音：/ˈæski/ ass-kee[1]，American Standard Code for Information Interchange，美国信息交换标准代码）是基于拉丁字母的一套电脑编码系统。它主要用于显示现代英语，而其扩展版本EASCII则可以部分支持其他西欧语言，并等同于国际标准ISO/IEC 646。
+
+1968年版ASCII编码速见表
+ASCII第一次以规范标准的类型发表是在1967年，最后一次更新则是在1986年，至今为止共定义了128个字符；其中33个字符无法显示（一些终端提供了扩展，使得这些字符可显示为诸如笑脸、扑克牌花式等8-bit符号），且这33个字符多数都已是陈废的控制字符。控制字符的用途主要是用来操控已经处理过的文字。在33个字符之外的是95个可显示的字符，包含用键盘敲下空白键所产生的空白字符也算1个可显示字符（显示为空白）。
+</pre>
+</body>
+</html>

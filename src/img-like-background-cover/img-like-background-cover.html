@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <title>Demo</title>
+    <style type="text/css">
+    .demo1 {
+        width: 200px;
+        height: 200px;
+        background-image: url(xxhh.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    
+    .demo2 {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .demo3 {
+        width: 200px;
+        height: 200px;
+        background-image: url(xxhh.jpg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    
+    .demo4 {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="demo1"></div>
+    <img src="xxhh.jpg" class="demo2">
+    <div class="demo3"></div>
+    <img src="xxhh.jpg" class="demo4">
+
+    <br>
+    <small>
+        兼容性: iOS Safari 8+, android 4.4.4+, Chrome 31+, Firefox 36+
+        <br>
+        IE 11不支持
+        <br>
+        EDGE 14 不支持
+    </small>
+
+    <!--
+    Google: img like background cover
+    http://stackoverflow.com/questions/11670874/is-there-an-equivalent-to-background-size-cover-and-contain-for-image-elements
+     -->
+</body>
+
+</html>

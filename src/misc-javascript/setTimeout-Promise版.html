@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Demo</title>
+<style type="text/css">
+
+</style>
+<script>
+/*
+ms
+*/
+function timeout(ms) {
+	return new Promise (function (resolve, reject) {
+		setTimeout(resolve, ms)
+	})
+}
+
+// 延迟3秒，弹出 alert
+timeout(3000)
+.then(function () {
+	alert(1)
+})
+
+</script>
+</head>
+<body>
+	<div>
+		
+	</div>
+	
+	
+</body>
+</html>
